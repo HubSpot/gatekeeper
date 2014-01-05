@@ -29,7 +29,7 @@ function authenticate(code, cb) {
   };
 
   var reqOptions = {
-    url: config.oauth_host + ':' + config.oauth_port + config.oauth_path,
+    url: config.oauth_host + ':' + config.oauth_port + '/' + config.oauth_path,
     method: config.oauth_method,
     form: data
   };

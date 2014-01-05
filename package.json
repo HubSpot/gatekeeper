@@ -7,13 +7,15 @@
     "oauth"
   ],
   "scripts": {
-      "start": "node server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/prose/gatekeeper"
   },
-  "author": "Michael Aufreiter",
+  "author": {
+    "name": "Michael Aufreiter"
+  },
   "contributors": [],
   "dependencies": {
     "express": "~3.3.4"

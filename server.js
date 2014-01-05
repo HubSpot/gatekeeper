@@ -32,7 +32,10 @@ function authenticate(code, cb) {
     port: config.oauth_port,
     path: config.oauth_path,
     method: config.oauth_method,
-    headers: { 'content-length': data.length }
+    headers: {
+      'content-length': data.length,
+      'accept': 'application/json'
+    }
   };
 
   var body = "";
@@ -58,14 +61,19 @@ app.all('*', function (req, res, next) {
   next();
 });
 
+var appRoot = process.env.APP_ROOT || '';
 
-app.get('/authenticate/:code', function(req, res) {
+app.get(appRoot + '/authenticate/:code', function(req, res) {
   console.log('authenticating code:' + req.params.code);
   authenticate(req.params.code, function(err, token) {
     var result = err || !token ? {"error": "bad_code"} : { "token": token };
     console.log(result);
     res.json(result);
   });
+});
+
+app.get(appRoot + '/health-check', function(req, res) {
+  res.send('ok');
 });
 
 var port = process.env.PORT || config.port || 9999;
